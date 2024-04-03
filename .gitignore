@@ -1,0 +1,5 @@
+alldata_*
+histograms/
+visualized_data/
+*.pyc
+*.zip
