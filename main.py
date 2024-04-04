@@ -23,7 +23,8 @@ def load_and_preprocess_data(file_path):
 
 def split_data(data, target):
     # データを特徴量Xとターゲットyに分割する
-    X = data[data.columns - target]  # 特徴量を選択
+    features = [item for item in data.columns if item not in target]
+    X = data[features]  # 特徴量を選択
     y = data[target]  # ターゲット変数を選択
 
     # データを学習用とテスト用に分割する
@@ -96,10 +97,10 @@ def main(file_path):
     print(target)
 
     # データの分割
-    X_train, X_test, y_train, y_test = split_data(data)
+    X_train, X_test, y_train, y_test = split_data(data, target)
 
     # モデルの学習と評価
-    model = train_and_evaluate(X_train, X_test, y_train, y_test)
+    model = train_and_evaluate(model, X_train, X_test, y_train, y_test)
 
 
 if __name__ == "__main__":
